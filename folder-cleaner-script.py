@@ -1,5 +1,7 @@
 # Folder Cleaner Extension
 #
+# Based on Folder Color extension by Marcos Alvarez Costales
+#
 # Folder Cleaner Extension is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
 # the Free Software Foundation; either version 3 of the License, or
@@ -78,14 +80,60 @@ class MyScriptMenu(GObject.GObject, Nautilus.MenuProvider):
             return 
         
     def sort_by_type(self, menu_item, nautilus_file):
-        self.sort_files()
+        f = nautilus_file.pop()
+        path = f.get_location().get_path()
+        self.sort_files(path)
         
     def sort_by_ext(self, menu_item, nautilus_file):
-        self.sort_files(by_extension=True)
+        f = nautilus_file.pop()
+        path = f.get_location().get_path()
+        self.sort_files(path, by_extension=True)
         
-    def sort_files(self, by_extension=False):
-        if by_extension:
-            print('by_ext')
+    def sort_files(self, path, by_extension=False):
+    
+        dirs, files = get_files_and_folders(path, absolute_folders_paths=False)
+        
+        for f in files:
+            content_type, val = Gio.content_type_guess(f)
+            simple_file = Gio.File.new_for_path(f)
+            name, ext = simple_file.get_basename().rsplit('.', 1)
+
+            if not by_extension:
+                destination_folder = Gio.File.new_for_path(path + '/' + content_type.split('/')[0].capitalize())
+                ext = content_type.split('/')[0].capitalize()
+            else:
+                destination_folder = Gio.File.new_for_path(path + '/' + ext)
+
+            destination_path = destination_folder.get_path() + '/' + simple_file.get_basename()
+            destination_for_files = Gio.File.new_for_path(destination_path)
+
+            if ext not in dirs:
+                Gio.File.make_directory(destination_folder)
+                simple_file.move(destination_for_files, Gio.FileCopyFlags.NONE)
+                dirs.append(ext)
+            else:
+                simple_file.move(destination_for_files, Gio.FileCopyFlags.NONE)
+    
+def get_files_and_folders(folder, absolute_folders_paths=True):
+    folder_list = []
+    files_list = []
+
+    path = Gio.File.new_for_path(folder)
+    enumerator = path.enumerate_children(Gio.FILE_ATTRIBUTE_STANDARD_NAME, Gio.FileQueryInfoFlags.NONE)
+    info = enumerator.next_file()
+    while info is not None:
+        if info.get_file_type() == Gio.FileType.DIRECTORY:
+            if absolute_folders_paths:
+                folder_path = path.get_path() + '/' + info.get_name()
+            else:
+                folder_path = info.get_name()
+            folder_list.append(folder_path)
+            info = enumerator.next_file()
         else:
-            print('by_type')
+            abs_path = path.get_path() + '/' + info.get_name()
+            files_list.append(abs_path)
+            info = enumerator.next_file()
+     
+    return folder_list, files_list
+
 
