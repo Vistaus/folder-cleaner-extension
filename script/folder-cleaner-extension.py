@@ -22,7 +22,7 @@ gi.require_version('Nautilus', '3.0')
 from gi.repository import Nautilus, GObject, Gio
 
 # i18n
-gettext.textdomain('folder-color-common')
+gettext.textdomain('folder-cleaner-extension')
 _ = gettext.gettext
 
 class MyScriptMenu(GObject.GObject, Nautilus.MenuProvider):
@@ -65,11 +65,11 @@ class MyScriptMenu(GObject.GObject, Nautilus.MenuProvider):
             submenu = Nautilus.Menu()
             top_menuitem.set_submenu(submenu)
             
-            item = Nautilus.MenuItem(name="name", label="By type")
+            item = Nautilus.MenuItem(name="name", label=_("By type"))
             item.connect('activate', self.sort_by_type, items)
             submenu.append_item(item)
             
-            item2 = Nautilus.MenuItem(name="name", label="By extension")
+            item2 = Nautilus.MenuItem(name="name2", label=_("By extension"))
             item2.connect('activate', self.sort_by_ext, items)
             submenu.append_item(item2)
             
