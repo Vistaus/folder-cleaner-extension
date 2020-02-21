@@ -1,1 +1,1 @@
-i18n.gettext('com.github.Latesil.folder-cleaner',  preset: 'glib')
+i18n.gettext('com.github.Latesil.folder-cleaner-extension',  preset: 'glib')

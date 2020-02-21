@@ -22,7 +22,7 @@ gi.require_version('Nautilus', '3.0')
 from gi.repository import Nautilus, GObject, Gio
 
 # i18n
-gettext.textdomain('folder-cleaner-extension')
+gettext.textdomain('com.github.Latesil.folder-cleaner-extension')
 _ = gettext.gettext
 
 class MyScriptMenu(GObject.GObject, Nautilus.MenuProvider):
