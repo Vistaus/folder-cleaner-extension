@@ -25,7 +25,7 @@ from gi.repository import Nautilus, GObject, Gio
 gettext.textdomain('com.github.Latesil.folder-cleaner-extension')
 _ = gettext.gettext
 
-class MyScriptMenu(GObject.GObject, Nautilus.MenuProvider):
+class FolderCleanerMenu(GObject.GObject, Nautilus.MenuProvider):
     def __init__(self):
         GObject.Object.__init__(self)
         self.all_are_directories = True
@@ -61,7 +61,7 @@ class MyScriptMenu(GObject.GObject, Nautilus.MenuProvider):
             if len(items) > 1:
                 return
             
-            top_menuitem = Nautilus.MenuItem(name='MyScriptMenu::Top', label=_("Sort files"))
+            top_menuitem = Nautilus.MenuItem(name='FolderCleanerMenu::Top', label=_("Sort files"))
             submenu = Nautilus.Menu()
             top_menuitem.set_submenu(submenu)
             
