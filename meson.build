@@ -4,9 +4,12 @@ project(
 	meson_version: '>= 0.50.0',
 )
 
-appname = 'com.gitlab.Latesil.folder-cleaner-extension'
+pkg = import('pkgconfig')
+nautilus_python = dependency('nautilus-python', version:  '>=1.2.3')
+lib = library('foo', dependencies : [bar])
+pkg.generate(lib)
 
-dependency('nautilus-python', version : '>=1.2.3')
+appname = 'com.gitlab.Latesil.folder-cleaner-extension'
 
 i18n  = import('i18n')
 

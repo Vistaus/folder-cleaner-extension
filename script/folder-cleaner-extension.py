@@ -36,6 +36,18 @@ class FolderCleanerMenu(GObject.GObject, Nautilus.MenuProvider):
             return
         
         return self._generate_menu(items)
+        
+    def get_background_items(self, window, items):
+        if not self._check_generate_background_menu(items):
+            return
+        
+        return self._generate_background_menu(items)
+        
+    def _check_generate_background_menu(self, items):
+        if type(items) == list:
+            return False
+            
+        return True
     
     def _check_generate_menu(self, items):
         if not len(items):
@@ -48,20 +60,33 @@ class FolderCleanerMenu(GObject.GObject, Nautilus.MenuProvider):
                 return False
             
             if item.is_directory():
-                #print('is dir')
                 self.all_are_files = False
             else:
-                #print('is file')
                 return False
         
         return True
+        
+    def _generate_background_menu(self, items):
+        top_background_menuitem = Nautilus.MenuItem(name='FolderCleanerMenu::Background', label=_("Sort files"))
+        background_submenu = Nautilus.Menu()
+        top_background_menuitem.set_submenu(background_submenu)
+        
+        item = Nautilus.MenuItem(name="name3", label=_("By type"))
+        item.connect('activate', self.background_sort_by_type, items)
+        background_submenu.append_item(item)
+        
+        item2 = Nautilus.MenuItem(name="name4", label=_("By extension"))
+        item2.connect('activate', self.background_sort_by_ext, items)
+        background_submenu.append_item(item2)
+        
+        return top_background_menuitem,
     
     def _generate_menu(self, items):
         if self.all_are_directories:
             if len(items) > 1:
                 return
             
-            top_menuitem = Nautilus.MenuItem(name='FolderCleanerMenu::Top', label=_("Sort files"))
+            top_menuitem = Nautilus.MenuItem(name='FolderCleanerMenu::Background', label=_("Sort files"))
             submenu = Nautilus.Menu()
             top_menuitem.set_submenu(submenu)
             
@@ -87,6 +112,14 @@ class FolderCleanerMenu(GObject.GObject, Nautilus.MenuProvider):
     def sort_by_ext(self, menu_item, nautilus_file):
         f = nautilus_file.pop()
         path = f.get_location().get_path()
+        self.sort_files(path, by_extension=True)
+        
+    def background_sort_by_type(self, menu_item, nautilus_file):
+        path = nautilus_file.get_location().get_path()
+        self.sort_files(path)
+        
+    def background_sort_by_ext(self, menu_item, nautilus_file):
+        path = nautilus_file.get_location().get_path()
         self.sort_files(path, by_extension=True)
         
     def sort_files(self, path, by_extension=False):
