@@ -1,2 +1,0 @@
-/home/late/Programs/folder-cleaner-extension/build/meson-private/cmake_nautilus-python/CMakeFiles/rebuild_cache.dir
-/home/late/Programs/folder-cleaner-extension/build/meson-private/cmake_nautilus-python/CMakeFiles/edit_cache.dir
