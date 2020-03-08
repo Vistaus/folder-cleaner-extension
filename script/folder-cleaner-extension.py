@@ -71,11 +71,11 @@ class FolderCleanerMenu(GObject.GObject, Nautilus.MenuProvider):
         background_submenu = Nautilus.Menu()
         top_background_menuitem.set_submenu(background_submenu)
         
-        item = Nautilus.MenuItem(name="name3", label=_("By type"))
+        item = Nautilus.MenuItem(name="name3", label=_("By Type"))
         item.connect('activate', self.background_sort_by_type, items)
         background_submenu.append_item(item)
         
-        item2 = Nautilus.MenuItem(name="name4", label=_("By extension"))
+        item2 = Nautilus.MenuItem(name="name4", label=_("By Extension"))
         item2.connect('activate', self.background_sort_by_ext, items)
         background_submenu.append_item(item2)
         
@@ -86,15 +86,15 @@ class FolderCleanerMenu(GObject.GObject, Nautilus.MenuProvider):
             if len(items) > 1:
                 return
             
-            top_menuitem = Nautilus.MenuItem(name='FolderCleanerMenu::Top', label=_("Sort files"))
+            top_menuitem = Nautilus.MenuItem(name='FolderCleanerMenu::Top', label=_("Sort Files"))
             submenu = Nautilus.Menu()
             top_menuitem.set_submenu(submenu)
             
-            item = Nautilus.MenuItem(name="name", label=_("By type"))
+            item = Nautilus.MenuItem(name="name", label=_("By Type"))
             item.connect('activate', self.sort_by_type, items)
             submenu.append_item(item)
             
-            item2 = Nautilus.MenuItem(name="name2", label=_("By extension"))
+            item2 = Nautilus.MenuItem(name="name2", label=_("By Extension"))
             item2.connect('activate', self.sort_by_ext, items)
             submenu.append_item(item2)
             
