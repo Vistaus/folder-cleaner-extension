@@ -13,13 +13,13 @@
 "X-Poedit-SearchPath-0: .\n"
 
 #: script/folder-cleaner-extension.py:64
-msgid "Sort files"
+msgid "Sort Files"
 msgstr ""
 
 #: script/folder-cleaner-extension.py:68
-msgid "By type"
+msgid "By Type"
 msgstr ""
 
 #: script/folder-cleaner-extension.py:72
-msgid "By extension"
+msgid "By Extension"
 msgstr ""

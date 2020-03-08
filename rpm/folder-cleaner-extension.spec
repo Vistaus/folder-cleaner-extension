@@ -1,7 +1,7 @@
 %global uuid    com.github.Latesil.%{name}
 
 Name:           folder-cleaner-extension
-Version:        1.0.3
+Version:        1.0.4
 Release:        1%{?dist}
 Summary:        Folder Cleaner extension for Nautilus file manager
 
@@ -42,6 +42,9 @@ Requires:       nautilus-python
 
 
 %changelog
+* Sun Mar 8 2020 Latesil <vihilantes@gmail.com> - 1.0.4-1
+- Another Fix
+
 * Sun Mar 8 2020 Latesil <vihilantes@gmail.com> - 1.0.3-1
 - Tiny Fix
 

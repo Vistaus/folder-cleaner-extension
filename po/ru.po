@@ -16,12 +16,12 @@ msgstr ""
 
 #: script/folder-cleaner-extension.py:64
 msgid "Sort files"
-msgstr "Сортировать файлы"
+msgstr "Сортировать Файлы"
 
 #: script/folder-cleaner-extension.py:68
-msgid "By type"
-msgstr "По типу"
+msgid "By Type"
+msgstr "По Типу"
 
 #: script/folder-cleaner-extension.py:72
-msgid "By extension"
-msgstr "По расширению"
+msgid "By Extension"
+msgstr "По Расширению"
