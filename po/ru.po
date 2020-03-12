@@ -15,7 +15,7 @@ msgstr ""
 "X-Poedit-SearchPath-0: .\n"
 
 #: script/folder-cleaner-extension.py:64
-msgid "Sort files"
+msgid "Sort Files"
 msgstr "Сортировать Файлы"
 
 #: script/folder-cleaner-extension.py:68

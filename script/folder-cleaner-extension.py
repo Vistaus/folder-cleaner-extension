@@ -67,7 +67,7 @@ class FolderCleanerMenu(GObject.GObject, Nautilus.MenuProvider):
         return True
         
     def _generate_background_menu(self, items):
-        top_background_menuitem = Nautilus.MenuItem(name='FolderCleanerMenu::Background', label=_("Sort files"))
+        top_background_menuitem = Nautilus.MenuItem(name='FolderCleanerMenu::Background', label=_("Sort Files"))
         background_submenu = Nautilus.Menu()
         top_background_menuitem.set_submenu(background_submenu)
         
